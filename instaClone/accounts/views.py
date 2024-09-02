@@ -4,6 +4,8 @@ from . serializers import *
 from rest_framework import status
 from django.contrib.auth import authenticate,logout
 from rest_framework.authtoken.models import Token
+from rest_framework.generics import RetrieveUpdateAPIView
+from rest_framework.permissions import IsAuthenticated
 
 class RegisterView(APIView):
     def post(self,request):
@@ -61,3 +63,12 @@ class LogoutView(APIView):
                 'message': 'User logged out'
             }, status=status.HTTP_200_OK
         )
+
+
+class ProfileApi(RetrieveUpdateAPIView):
+    queryset = InstaUser.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user

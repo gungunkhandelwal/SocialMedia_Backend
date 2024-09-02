@@ -32,3 +32,9 @@ class LoginSerializer(serializers.Serializer):
     username=serializers.CharField()
     password=serializers.CharField()
 
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=InstaUser
+        fields=['profile_pic','bio','gender','website','privacy']
+        read_only_fields=['username','first_name','last_name']
