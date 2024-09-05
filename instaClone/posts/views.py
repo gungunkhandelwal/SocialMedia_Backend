@@ -13,7 +13,7 @@ class PostApi(APIView):
 
     def get(self,request,*args,**kwargs):
         data=Post.objects.all().order_by('-created_at')
-        serializer=PostSerializer(data,many=True)
+        serializer=PostSerializer(data,many=True,context={'request': request})
         return Response(serializer.data)
     
     def post(self,request):
