@@ -26,7 +26,6 @@ class RegisterView(APIView):
 class LoginView(APIView):
     def post(self,request):
         data=request.data
-        print(data)
         serializer=LoginSerializer(data=data)
         if not serializer.is_valid():
             return Response(
@@ -36,7 +35,6 @@ class LoginView(APIView):
                 },status.HTTP_400_BAD_REQUEST
             )
         user=authenticate(username=serializer.data['username'],password=serializer.data['password'])
-        print(user)
         if user is None:
             return Response(
                 {
