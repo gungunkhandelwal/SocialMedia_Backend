@@ -37,4 +37,3 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model=InstaUser
         fields=['profile_pic','bio','gender','website','privacy','username','first_name','last_name']
-        # read_only_fields=['username','first_name','last_name']

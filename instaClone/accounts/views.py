@@ -10,7 +10,6 @@ from rest_framework.permissions import IsAuthenticated
 class RegisterView(APIView):
     def post(self,request):
         data=request.data
-        print(data)
         serializer=RegisterSerializer(data=data)
         if not serializer.is_valid():
             return Response(
