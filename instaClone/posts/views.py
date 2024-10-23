@@ -23,6 +23,6 @@ class PostApi(APIView):
             serializer.save(author=request.user)
             return Response(serializer.data)
         return Response(serializer.errors)
-    
+
 
 
