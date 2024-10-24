@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 	path('',include('accounts.urls')),
 	path('post/',include('posts.urls')),
+	path('friendrequest/',include('FriendRequest.urls'))
 ]
 if settings.DEBUG:
 	urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
