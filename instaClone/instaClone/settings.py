@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'accounts',
     'posts',
     'FriendRequest',
-    'notifications'
+    'notifications',
+    'chat'
 ]
 
 MIDDLEWARE = [

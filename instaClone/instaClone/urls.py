@@ -24,7 +24,8 @@ urlpatterns = [
 	path('',include('accounts.urls')),
 	path('post/',include('posts.urls')),
 	path('friendrequest/',include('FriendRequest.urls')),
-	path('notifications/',include('notifications.urls'))
+	path('notifications/',include('notifications.urls')),
+	path('chat/',include('chat.urls'))
 ]
 if settings.DEBUG:
 	urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
