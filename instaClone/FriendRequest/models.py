@@ -8,7 +8,7 @@ class FriendRequest(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('sender', 'receiver') 
+        unique_together = ('sender', 'receiver')  #Only once sender can send friend request
 
     def __str__(self):
         return f"{self.sender.username} -> {self.receiver.username}"
