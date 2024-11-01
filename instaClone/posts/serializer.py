@@ -16,6 +16,16 @@ class PostSerializer(serializers.ModelSerializer):
         return None
 
 
-     
+class LikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Like
+        fields=['user','post','timestamp']
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Comment
+        fields='__all__'
+        
+
 
 
