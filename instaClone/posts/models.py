@@ -12,7 +12,7 @@ class Post(models.Model):
     
 class Like(models.Model):
     user=models.ForeignKey(InstaUser,on_delete=models.CASCADE)
-    post=models.ForeignKey(Post,on_delete=models.CASCADE)
+    post=models.ForeignKey(Post,on_delete=models.CASCADE,related_name="likes")
     timestamp=models.DateTimeField(auto_now_add=True)
     is_like=models.BooleanField(default=False)
 
@@ -24,7 +24,7 @@ class Like(models.Model):
     
 class Comment(models.Model):
     user=models.ForeignKey(InstaUser,on_delete=models.CASCADE)
-    post=models.ForeignKey(Post,on_delete=models.CASCADE)
+    post=models.ForeignKey(Post,on_delete=models.CASCADE,related_name="comment")
     timestamp=models.DateTimeField(auto_now_add=True)
     content=models.TextField()
 

@@ -13,4 +13,4 @@ class ConverstaionSerializer(serializers.Serializer):
         model=Conversation
         field=['id','participants','messages','created_at']
 
-#    NotImplementedError: `create()` must be implemented.
+#    NotImplementedError: `create()` must be implemented.   
