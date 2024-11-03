@@ -14,7 +14,8 @@ class PostListCreateApi(APIView):
     parser_classes = [MultiPartParser, FormParser]
 
     def get(self,request,*args,**kwargs):
-        data=Post.objects.all().annotate(like_count=Count('likes')).annotate(comment_count=Count('comment')).order_by('-created_at')  # List all post and there like count
+        # List all post and there like count and comment_count
+        data=Post.objects.all().annotate(like_count=Count('likes')).annotate(comment_count=Count('comment')).order_by('-created_at')
         serializer=PostSerializer(data,many=True,context={'request': request})
         return Response(serializer.data)
     

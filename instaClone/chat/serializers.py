@@ -13,4 +13,10 @@ class ConverstaionSerializer(serializers.Serializer):
         model=Conversation
         field=['id','participants','messages','created_at']
 
+    def create(self,validated_data):
+        participants=validated_data.get('participants',[])
+        if self.context['request'].user not in participants:
+            participants.append(self.context['request'].user)
+        validated_data['participants']=participants
+        return super().create(validated_data)
 #    NotImplementedError: `create()` must be implemented.   
