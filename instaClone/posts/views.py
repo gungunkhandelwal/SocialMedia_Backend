@@ -79,4 +79,25 @@ class CommentListCreateView(APIView):
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
+class ProfileView(APIView):
+    """
+    API View to retrieve user profile information
+    """
+    def get(self, request):
+        """
+        Get the profile of the currently logged-in user
+        """
+        try:
+            # Get the current user
+            user = request.user
 
+            # Serialize the user profile
+            serializer = ProfileSerializer(user, context={'request': request})
+            
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        except Exception as e:
+            return Response(
+                {'error': 'Unable to retrieve profile'},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )

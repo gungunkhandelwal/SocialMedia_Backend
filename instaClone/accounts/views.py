@@ -50,7 +50,7 @@ class LoginView(APIView):
                 'token':str(token),
             }, status=status.HTTP_200_OK
         )
-    
+      
 class LogoutView(APIView):
     def post(self,request):
         logout(request)
