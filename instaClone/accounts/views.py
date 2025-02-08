@@ -42,12 +42,19 @@ class LoginView(APIView):
                 }, status=status.HTTP_401_UNAUTHORIZED
             )
         token, created = Token.objects.get_or_create(user=user)
+        user_data={
+            'id':user.id,
+            'username':user.username,
+            'first_name':user.first_name,
+            'last_name':user.last_name
+        }
         
         return Response(
             {
                 'status': True,
                 'message': 'User logged in',
                 'token':str(token),
+                'user':user_data
             }, status=status.HTTP_200_OK
         )
       

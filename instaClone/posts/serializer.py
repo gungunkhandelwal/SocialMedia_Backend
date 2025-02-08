@@ -13,9 +13,9 @@ class PostSerializer(serializers.ModelSerializer):
         fields=['id','author_username','author_profile_pic','images','caption','created_at','like_count','comment_count']
         read_only_field=['author_username','created_at']
     
-    def get_author_profile_pic(self,obj):
-        request=self.context.get('request')
-        if obj.author.profile_pic:
+    def get_author_profile_pic(self, obj):
+        request = self.context.get('request')
+        if request and obj.author.profile_pic:
             return request.build_absolute_uri(obj.author.profile_pic.url)
         return None
     

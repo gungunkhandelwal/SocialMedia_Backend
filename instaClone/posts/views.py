@@ -19,9 +19,9 @@ class PostListCreateApi(APIView):
         serializer=PostSerializer(data,many=True,context={'request': request})
         return Response(serializer.data)
     
-    def post(self,request):
-        data=request.data
-        serializer=PostSerializer(data=data)
+    def post(self, request):
+        data = request.data
+        serializer = PostSerializer(data=data, context={'request': request})  # Ensure context is passed
         if serializer.is_valid():
             serializer.save(author=request.user)
             return Response(serializer.data)
