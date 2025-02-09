@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate,logout
 from rest_framework.authtoken.models import Token
 from rest_framework.generics import RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import generics
+from django.db.models import Q
 
 class RegisterView(APIView):
     def post(self,request):
@@ -76,3 +78,18 @@ class ProfileApi(RetrieveUpdateAPIView):
 
     def get_object(self):
         return self.request.user
+
+class UserSearchView(generics.ListAPIView):
+    serializer_class = UserSearchSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        query = self.request.query_params.get('query', '')
+        if query:
+            return InstaUser.objects.filter(
+                Q(username__icontains=query) |
+                Q(first_name__icontains=query) |
+                Q(last_name__icontains=query)
+            ).exclude(id=self.request.user.id)[:10]
+        return InstaUser.objects.none()
+    

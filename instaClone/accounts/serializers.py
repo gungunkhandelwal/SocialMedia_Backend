@@ -37,3 +37,8 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model=InstaUser
         fields=['profile_pic','bio','gender','website','privacy','username','first_name','last_name'] 
+
+class UserSearchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = InstaUser
+        fields = ['id', 'username', 'profile_pic', 'bio', 'privacy']

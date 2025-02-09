@@ -5,7 +5,7 @@ from django.db.models import Count
 class PostSerializer(serializers.ModelSerializer):
     author_username=serializers.ReadOnlyField(source='author.username')
     author_profile_pic=serializers.SerializerMethodField()
-    like_count = serializers.IntegerField(read_only=True) #Adding integerField work not serializerMethodField
+    like_count = serializers.IntegerField(read_only=True)
     comment_count=serializers.IntegerField(read_only=True)
 
     class Meta:
